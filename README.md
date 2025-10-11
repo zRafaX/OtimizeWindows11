@@ -22,10 +22,10 @@ Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sis
 Na imagem acima, outro ensinando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
 
 **🔥 CONSEQUÊNCIAS:**
-- ✅ **Sistema sem pontos de restauração** - Sem backup automático
-- ✅ **Impossibilidade de recuperação** em caso de falhas críticas
-- ✅ **Vulnerável a problemas** de driver e atualizações
-- ✅ **Perda total de dados** do sistema em cenários de crash
+- ❌ **Sistema sem pontos de restauração** - Sem backup automático
+- ❌ **Impossibilidade de recuperação** em caso de falhas críticas
+- ❌ **Vulnerável a problemas** de driver e atualizações
+- ❌ **Perda total de dados** do sistema em cenários de crash
 
 ### 🎯 **Objetivo Principal**
 Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circulam em tutoriais não técnicos e que podem comprometer a estabilidade do sistema.
