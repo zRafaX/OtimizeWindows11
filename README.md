@@ -70,7 +70,6 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 
 ### 🔒 **Segurança e Privacidade Reforçadas**
 - ✅ Remoção de serviços potencialmente vulneráveis
-- ✅ Eliminação de chaves de ativadores maliciosas
 
 ### 🛡️ **Proteção e Backup Automático**
 - ✅ Criação automática de ponto de restauração

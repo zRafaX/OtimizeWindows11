@@ -57,13 +57,6 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplicat
     echo [✗] Erro ao desativar apps em segundo plano
 )
 
-:: Remover chaves de ativadores
-set "keys=OSPPSVC.EXE SPPEXTCOMOBJ.EXE"
-for %%k in (%keys%) do (
-    reg delete "HKLM\SOFTWARE\MICROSOFT\WINDOWS NT\CURRENTVERSION\IMAGE FILE EXECUTION OPTIONS\%%k" /f 2>nul && echo [✓] Chave %%k removida
-    reg delete "HKLM\SOFTWARE\WOW6432NODE\MICROSOFT\WINDOWS NT\CURRENTVERSION\IMAGE FILE EXECUTION OPTIONS\%%k" /f 2>nul && echo [✓] Chave WOW6432Node\%%k removida
-)
-
 :: ==================== LIMPEZA AVANÇADA DE ARQUIVOS TEMPORÁRIOS ====================
 echo.
 echo # Realizando limpeza de arquivos temporarios...
@@ -97,11 +90,11 @@ echo.
 powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul && echo [✓] Plano de energia de alto desempenho ativado
 
 :: Aplicar configurações de GPU
-if exist ".\REG\GPU PRIORIDADE.reg" (
-    regedit /s ".\REG\GPU PRIORIDADE.reg" && echo [✓] Configuracoes de GPU aplicadas
+if exist ".\REG\OTIMIZEWINDOWS11.reg" (
+    regedit /s ".\REG\OTIMIZEWINDOWS11.reg" && echo [✓] Configuracoes de GPU aplicadas
 )
-if exist ".\REG\GPU PRIORIDADE 2.reg" (
-    regedit /s ".\REG\GPU PRIORIDADE 2.reg" && echo [✓] Configuracoes de GPU 2 aplicadas
+if exist ".\REG\OTIMIZEWINDOWS11 2.reg" (
+    regedit /s ".\REG\OTIMIZEWINDOWS11 2.reg" && echo [✓] Configuracoes de GPU 2 aplicadas
 )
 
 :: ==================== CONFIGURAÇÃO DE SERVIÇOS ====================
