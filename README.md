@@ -11,7 +11,7 @@ Um script de otimização para Windows 11 para maximizar o desempenho, seguranç
 
 ## 📋 Sobre o Projeto
 
-Diante de vários Youtubers cabeças de BAGRE que não entendem nada de otimização e que ensinam coisas totalmente erradas que so prejudicam o funcionamento do seu sistema, este projeto surge como uma solução técnica baseada em conhecimento aprofundado do funcionamento do Windows 11.
+Diante de vários YouTubers que não entendem nada de otimização e que ensinam coisas totalmente erradas que só prejudicam o funcionamento do seu sistema, este projeto surge como uma solução técnica baseada em conhecimento aprofundado do funcionamento do Windows 11.
 
 ![Banner](https://i.imgur.com/YvIixbp.jpeg)
 
@@ -19,7 +19,7 @@ Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sis
 
 ![Banner](https://i.imgur.com/hLS6nRG.png)
 
-Na imagem acima, outro cabeça de BAGRE ensiando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
+Na imagem acima, outro ensinando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
 
 **🔥 CONSEQUÊNCIAS:**
 - ✅ **Sistema sem pontos de restauração** - Sem backup automático
@@ -60,7 +60,7 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 ### 🎯 **Otimizações de Performance Comprovadas**
 - ✅ Configurações avançadas de escalonamento de CPU
 - ✅ Otimizações de plano de energia de alto desempenho
-- ✅ Ajustes de memory management
+- ✅ Ajustes de gerenciamento de memória
 - ✅ Configurações TCP/IP otimizadas para baixa latência
 - ✅ Gerenciamento inteligente de serviços do sistema
 
@@ -80,7 +80,7 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 ### 🛡️ **Proteção e Backup Automático**
 - ✅ Criação automática de ponto de restauração
 - ✅ Verificação de integridade do sistema (SFC)
-- ✅ Logging detalhado de todas as alterações
+- ✅ Registro detalhado de todas as alterações
 - ✅ Backup de configurações críticas
 
 ![Banner](https://i.imgur.com/lmfy50y.png)
