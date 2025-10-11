@@ -1,2 +1,89 @@
-# OtimizeWindows11
-Arquivo .bat para otimização do Windows 11
+# 🚀 Otimização Avançada para Windows 11
+
+**By: zRaFax**
+
+Um script de otimização para Windows 11 para maximizar o desempenho, segurança e privacidade do sistema.
+
+![Windows 11](https://img.shields.io/badge/Windows-11-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+![Batch](https://img.shields.io/badge/Batch-Script-4D4D4D?style=for-the-badge&logo=windowsterminal&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Verificado%20✅-success?style=for-the-badge)
+
+## 📋 Sobre o Projeto
+
+Diante de vários Youtubers cabeças de BAGRE que não entendem nada de otimização e que ensinam coisas totalmente erradas que so prejudicam o funcionamento do seu sistema, este projeto surge como uma solução técnica baseada em conhecimento aprofundado do funcionamento do Windows 11.
+
+![Banner](https://i.imgur.com/YvIixbp.jpeg)
+
+### 🎯 **Objetivo Principal**
+Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circulam em tutoriais não técnicos e que podem comprometer a estabilidade do sistema.
+
+> **⚠️ AVISO IMPORTANTE:** Este nível de otimização representa o máximo possível sem comprometer a estabilidade do sistema. Não recomendamos métodos alternativos não verificados.
+
+## 🚫 Práticas NÃO Recomendadas
+
+### 🛑 **Software de Otimização Duvidosos**
+- Iobit Advanced SystemCare
+- DriverBooster 
+- CleanMaster e similares
+
+### 🛑 **Modificações de Sistema Arriscadas**
+- ISOs "Lite" ou modificadas do Windows
+- Remoção manual de componentes do sistema
+- Edição indiscriminada do registro
+
+### 🛑 **Otimizações que Comprometem Performance**
+- Limpeza do cache DXShader (causa recompilação)
+- Limpeza de shaders da NVIDIA (impacto em jogos)
+- Alteração inadequada de arquivos de paginação
+- Desativação da hibernação sem necessidade
+
+### 🛑 **Overclock Inadequado**
+- Evite MSI Afterburner para usuários comuns
+- Prefira o overclock seguro via NVIDIA App
+- Não ultrapasse limites térmicos seguros
+
+## ✨ Funcionalidades Técnicas
+
+### 🎯 **Otimizações de Performance Comprovadas**
+- ✅ Configurações avançadas de escalonamento de CPU
+- ✅ Otimizações de plano de energia de alto desempenho
+- ✅ Ajustes de memory management
+- ✅ Configurações TCP/IP otimizadas para baixa latência
+- ✅ Gerenciamento inteligente de serviços do sistema
+
+### 🧹 **Limpeza Segura e Eficiente**
+- ✅ Remoção de arquivos temporários do sistema
+- ✅ Limpeza de cache de navegadores (Chrome, Edge)
+- ✅ Manutenção de logs e arquivos obsoletos
+- ✅ Gerenciamento controlado de Prefetch
+- ✅ Limpeza de componentes Windows desnecessários
+
+### 🔒 **Segurança e Privacidade Reforçadas**
+- ✅ Desativação de telemetria e rastreamento
+- ✅ Remoção de serviços potencialmente vulneráveis
+- ✅ Desativação de Cortana e Wi-Fi Sense
+- ✅ Eliminação de chaves de ativadores maliciosas
+
+### 🛡️ **Proteção e Backup Automático**
+- ✅ Criação automática de ponto de restauração
+- ✅ Verificação de integridade do sistema (SFC)
+- ✅ Logging detalhado de todas as alterações
+- ✅ Backup de configurações críticas
+
+## ⚡ Requisitos do Sistema
+
+| Componente | Requisito Mínimo |
+|------------|------------------|
+| **Sistema Operacional** | Windows 10 64-bit ou Windows 11 |
+| **Privilégios** | Conta de Administrador |
+| **Espaço em Disco** | 100MB livres para logs |
+| **Memória RAM** | 4GB (8GB recomendado) |
+
+## 🚀 Guia de Instalação
+
+### Método 1 - Execução Direta (Recomendado)
+```cmd
+# 1. Clique com botão direito no arquivo .bat
+# 2. Selecione "Executar como administrador"
+# 3. Aguarde a conclusão automática
