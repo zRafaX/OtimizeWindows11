@@ -1,4 +1,4 @@
-# 🚀 Otimização Avançada para Windows 11
+# 🚀 Otimização para Windows 11
 
 **By: zRaFax**
 
@@ -15,7 +15,7 @@ Diante de vários YouTubers que não entendem nada de otimização e que ensinam
 
 ![Banner](https://i.imgur.com/YvIixbp.jpeg)
 
-Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um tamanho insignificante do sistema.
+Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um espaço insignificante do sistema.
 
 ![Banner](https://i.imgur.com/hLS6nRG.png)
 
