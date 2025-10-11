@@ -15,6 +15,18 @@ Diante de vários Youtubers cabeças de BAGRE que não entendem nada de otimiza�
 
 ![Banner](https://i.imgur.com/YvIixbp.jpeg)
 
+Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um tamanho isignificante do sistema.
+
+![Banner](https://i.imgur.com/hLS6nRG.png)
+
+Na imagem acima, outro cabeça de BAGRE ensiando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
+
+**🔥 CONSEQUÊNCIAS DESASTROSAS:**
+- ✅ **Sistema sem pontos de restauração** - Sem backup automático
+- ✅ **Impossibilidade de recuperação** em caso de falhas críticas
+- ✅ **Vulnerável a problemas** de driver e atualizações
+- ✅ **Perda total de dados** do sistema em cenários de crash
+
 ### 🎯 **Objetivo Principal**
 Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circulam em tutoriais não técnicos e que podem comprometer a estabilidade do sistema.
 
