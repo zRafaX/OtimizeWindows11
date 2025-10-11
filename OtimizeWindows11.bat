@@ -57,16 +57,6 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplicat
     echo [✗] Erro ao desativar apps em segundo plano
 )
 
-:: Otimizações de Rede
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f >nul
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 0 /f >nul
-echo [✓] Otimizacoes de rede aplicadas
-
-:: Desativar Telemetria
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f >nul 2>&1
-echo [✓] Telemetria desativada
-
 :: Remover chaves de ativadores
 set "keys=OSPPSVC.EXE SPPEXTCOMOBJ.EXE"
 for %%k in (%keys%) do (
@@ -87,41 +77,21 @@ call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Windows\Recent" "Arquiv
 call :CleanFolder "%USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\Cache" "Cache Chrome" 2>nul
 call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Edge\User Data\Default\Cache" "Cache Edge" 2>nul
 
-:: Limpar Prefetch (com cuidado)
+:: Limpar Prefetch
 if exist "C:\Windows\Prefetch\*" (
     del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
     echo [✓] Cache Prefetch limpo
 )
 
-:: Limpar arquivos de log antigos
-forfiles /p "C:\Windows\Logs" /s /m *.log /d -30 /c "cmd /c del @path" >nul 2>&1
-echo [✓] Logs antigos removidos
-
-:: Limpeza do System32 (apenas arquivos temporários)
-if exist "C:\Windows\System32\config\systemprofile\AppData\Local\Temp\*" (
-    del /q /f /s "C:\Windows\System32\config\systemprofile\AppData\Local\Temp\*" >nul 2>&1
-)
-
-:: Executar Cleanmgr com perfil agressivo
+:: Executar Cleanmgr
 echo [i] Executando Limpeza de Disco Avancada...
 cleanmgr /sagerun:65535 >nul 2>&1
 echo [✓] Limpeza de disco concluida
-
-:: Limpeza do WinSxS (apenas se for seguro)
-Dism /online /Cleanup-Image /StartComponentCleanup /ResetBase >nul 2>&1
-if %errorlevel% equ 0 (
-    echo [✓] Limpeza de componentes do Windows concluida
-)
 
 :: ==================== OTIMIZAÇÕES DE PERFORMANCE AVANÇADAS ====================
 echo.
 echo # Aplicando otimizacoes de performance avancadas...
 echo.
-
-:: Configurações de Performance do Sistema
-bcdedit /set disabledynamictick yes >nul && echo [✓] Dynamic Tick desativado
-bcdedit /set useplatformclock yes >nul && echo [✓] Platform Clock ativado
-bcdedit /set tscsyncpolicy Enhanced >nul && echo [✓] Sincronizacao TSC otimizada
 
 :: Configurar plano de energia de alto desempenho
 powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul && echo [✓] Plano de energia de alto desempenho ativado
@@ -180,25 +150,6 @@ for %%s in %services% do (
     )
 )
 
-:: ==================== CONFIGURAÇÕES DE SEGURANÇA E PRIVACIDADE ====================
-echo.
-echo # Aplicando configuracoes de seguranca...
-echo.
-
-:: Desativar Cortana
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f >nul 2>&1
-echo [✓] Cortana desativada
-
-:: Desativar Wi-Fi Sense
-reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" /v value /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" /v value /t REG_DWORD /d 0 /f >nul 2>&1
-echo [✓] Wi-Fi Sense desativado
-
-:: Configuração adicional de registro para performance
-reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d 4194304 /f >nul && (
-    echo [✓] Registry SvcHostSplitThresholdInKB configurado
-)
-
 :: ==================== FINALIZAÇÃO ====================
 echo.
 echo # Executando otimizacoes finais...
@@ -206,11 +157,6 @@ echo.
 
 :: Limpar cache DNS
 ipconfig /flushdns >nul && echo [✓] Cache DNS limpo
-
-:: Reconstruir índice de pesquisa (após desativar Windows Search)
-sc start "WSearch" >nul 2>&1
-timeout /t 3 >nul
-sc stop "WSearch" >nul 2>&1
 
 :: Verificar integridade do sistema
 echo [i] Verificando integridade do sistema...
@@ -231,7 +177,6 @@ echo [RESUMO DAS ALTERACOES]
 echo • Servicos desnecessarios desativados
 echo • Arquivos temporarios removidos
 echo • Configuracoes de performance aplicadas
-echo • Otimizacoes de rede configuradas
 echo • Configuracoes de seguranca atualizadas
 echo.
 echo [RECOMENDACOES]

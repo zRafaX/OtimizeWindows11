@@ -57,12 +57,9 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 
 ## ✨ Funcionalidades Técnicas
 
-### 🎯 **Otimizações de Performance Comprovadas**
+### 🎯 **Otimizações de Performance**
 - ✅ Configurações avançadas de escalonamento de CPU
 - ✅ Otimizações de plano de energia de alto desempenho
-- ✅ Ajustes de gerenciamento de memória
-- ✅ Configurações TCP/IP otimizadas para baixa latência
-- ✅ Gerenciamento inteligente de serviços do sistema
 
 ### 🧹 **Limpeza Segura e Eficiente**
 - ✅ Remoção de arquivos temporários do sistema
@@ -72,9 +69,7 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 - ✅ Limpeza de componentes Windows desnecessários
 
 ### 🔒 **Segurança e Privacidade Reforçadas**
-- ✅ Desativação de telemetria e rastreamento
 - ✅ Remoção de serviços potencialmente vulneráveis
-- ✅ Desativação de Cortana e Wi-Fi Sense
 - ✅ Eliminação de chaves de ativadores maliciosas
 
 ### 🛡️ **Proteção e Backup Automático**
