@@ -21,7 +21,7 @@ Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sis
 
 Na imagem acima, outro cabeça de BAGRE ensiando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
 
-**🔥 CONSEQUÊNCIAS DESASTROSAS:**
+**🔥 CONSEQUÊNCIAS:**
 - ✅ **Sistema sem pontos de restauração** - Sem backup automático
 - ✅ **Impossibilidade de recuperação** em caso de falhas críticas
 - ✅ **Vulnerável a problemas** de driver e atualizações
