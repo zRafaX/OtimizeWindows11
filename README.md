@@ -15,7 +15,7 @@ Diante de vários Youtubers cabeças de BAGRE que não entendem nada de otimiza�
 
 ![Banner](https://i.imgur.com/YvIixbp.jpeg)
 
-Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um tamanho isignificante do sistema.
+Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um tamanho insignificante do sistema.
 
 ![Banner](https://i.imgur.com/hLS6nRG.png)
 
