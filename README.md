@@ -25,7 +25,7 @@ Na imagem acima, outro ensinando a desativar a paginação de disco que é funda
 - ❌ **Sistema sem pontos de restauração** - Sem backup automático
 - ❌ **Impossibilidade de recuperação** em caso de falhas críticas
 - ❌ **Vulnerável a problemas** de driver e atualizações
-- ❌ **Perda total de dados** do sistema em cenários de crash
+- ❌ **Perda de desempenho** do sistema em jogos que usam muita memoria RAM
 
 ### 🎯 **Objetivo Principal**
 Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circulam em tutoriais não técnicos e que podem comprometer a estabilidade do sistema.
