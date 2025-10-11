@@ -91,8 +91,6 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 |------------|------------------|
 | **Sistema Operacional** | Windows 10 64-bit ou Windows 11 |
 | **Privilégios** | Conta de Administrador |
-| **Espaço em Disco** | 100MB livres para logs |
-| **Memória RAM** | 4GB (8GB recomendado) |
 
 ## 🚀 Guia de Instalação
 
