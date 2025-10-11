@@ -83,6 +83,8 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 - ✅ Logging detalhado de todas as alterações
 - ✅ Backup de configurações críticas
 
+![Banner](https://i.imgur.com/lmfy50y.png)
+
 ## ⚡ Requisitos do Sistema
 
 | Componente | Requisito Mínimo |
