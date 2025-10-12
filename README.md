@@ -9,7 +9,9 @@ Um script de otimização para Windows 11 para maximizar o desempenho, seguranç
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Verificado%20✅-success?style=for-the-badge)
 
-[![VirusTotal Scan](https://img.shields.io/badge/VirusTotal-Scan_Report-1976d2?style=for-the-badge)](https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8)
+[![VirusTotal Scan](https://img.shields.io/badge/Status-Seguro%20✅-success?style=for-the-badge)](https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8)
+
+https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8
 
 ## 📋 Sobre o Projeto
 
