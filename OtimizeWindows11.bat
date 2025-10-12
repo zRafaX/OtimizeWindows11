@@ -170,7 +170,6 @@ echo [RESUMO DAS ALTERACOES]
 echo • Servicos desnecessarios desativados
 echo • Arquivos temporarios removidos
 echo • Configuracoes de performance aplicadas
-echo • Configuracoes de seguranca atualizadas
 echo.
 echo [RECOMENDACOES]
 echo 1. Reinicie o computador para aplicar todas as alteracoes
