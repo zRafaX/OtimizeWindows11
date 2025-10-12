@@ -95,5 +95,5 @@ Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circula
 ### Método 1 - Execução Direta (Recomendado)
 ```cmd
 # 1. Clique com botão direito no arquivo .bat
-# 2. Selecione "Executar como administrador"
-# 3. Aguarde a conclusão automática
+# 2. Selecione "Executar como administrador."
+# 3. Aguarde a conclusão automática.
