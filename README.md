@@ -7,7 +7,7 @@ Um script de otimização para Windows 11 para maximizar o desempenho, seguranç
 ![Windows 11](https://img.shields.io/badge/Windows-11-0078D4?style=for-the-badge&logo=windows&logoColor=white)
 ![Batch](https://img.shields.io/badge/Batch-Script-4D4D4D?style=for-the-badge&logo=windowsterminal&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Verificado%20✅-success?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Verificado%20-success?style=for-the-badge)
 
 [![VirusTotal Scan](https://img.shields.io/badge/VirusTotal-Seguro-1976d2?style=for-the-badge)](https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8)
 
