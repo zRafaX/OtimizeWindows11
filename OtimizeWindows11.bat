@@ -181,17 +181,6 @@ echo.
 
 timeout /t 10 >nul
 
-:: Perguntar sobre reinicialização
-choice /c SN /m "Deseja reiniciar o computador agora"
-if %errorlevel% equ 1 (
-    shutdown /r /t 30 /c "Reiniciando para aplicar otimizacoes do sistema. O computador reiniciara em 30 segundos."
-    echo [i] O computador sera reiniciado em 30 segundos...
-) else (
-    echo [i] Lembre-se de reiniciar manualmente para aplicar todas as alteracoes.
-)
-
-exit /b
-
 :: ==================== FUNÇÕES ====================
 :CleanFolder
 if exist "%~1\*" (
