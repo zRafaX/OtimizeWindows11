@@ -57,6 +57,15 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplicat
     echo [✗] Erro ao desativar apps em segundo plano
 )
 
+:: ==================== SEGURANÇA (LIMPEZA DE DADOS) ====================
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data" >nul 2>&1
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data-journal" >nul 2>&1
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account" >nul 2>&1
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account-journal" >nul 2>&1
+
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data" >nul 2>&1
+del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data-journal" >nul 2>&1
+
 :: ==================== LIMPEZA AVANÇADA DE ARQUIVOS TEMPORÁRIOS ====================
 echo.
 echo # Realizando limpeza de arquivos temporarios...
@@ -181,10 +190,19 @@ echo.
 
 timeout /t 10 >nul
 
+:: ==================== OPCIONAL ===================
+
+:: ====== LIMPEZA DE DISCO ======
+cleanmgr /sagerun:99
+
+:: ====== LIMPEZA AVANÇADA (NÃO RECOMENDADO)
+::Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase
+
 :: ==================== FUNÇÕES ====================
 :CleanFolder
 if exist "%~1\*" (
     del /q /f /s "%~1\*" >nul 2>&1
     echo [✓] %~2 limpo
 )
+
 exit /b
