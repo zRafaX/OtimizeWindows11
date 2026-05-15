@@ -1,99 +1,60 @@
-# 🚀 Otimização para Windows 11
+# 🛡️ AdBlock - Twitch (Android & Windows)
 
-**By: zRaFax**
+[![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20Android-lightgrey)]()
 
-Um script de otimização para Windows 11 para maximizar o desempenho, segurança e privacidade do sistema.
+This repository brings together the best strategies to block ads at every possible layer: DNS, applications, and browser extensions. The goal is to provide an ad-free experience on both Windows and Android, especially against intrusive advertisements.
 
-![Windows 11](https://img.shields.io/badge/Windows-11-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-![Batch](https://img.shields.io/badge/Batch-Script-4D4D4D?style=for-the-badge&logo=windowsterminal&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Verificado%20-success?style=for-the-badge)
+**DNS Level** – Blocks up to 70% of ads system-wide.
 
-[![VirusTotal Scan](https://img.shields.io/badge/VirusTotal-Seguro-1976d2?style=for-the-badge)](https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8)
+**App Level (Android)** – Open-source alternative to the official Twitch app with support for adding a custom proxy.
 
-https://www.virustotal.com/gui/file/077db3b40ddab7d4d765c04eea4177b2bcce4dcf9e0d9f04a125f811c50f91c8
+---
 
-## 📋 Sobre o Projeto
+# Windows (10/11)
 
-Diante de vários YouTubers que não entendem nada de otimização e que ensinam coisas totalmente erradas que só prejudicam o funcionamento do seu sistema, este projeto surge como uma solução técnica baseada em conhecimento aprofundado do funcionamento do Windows 11.
+1. Run the `DNS.bat` script to apply the custom AdGuard DNS.
 
-![Banner](https://i.imgur.com/YvIixbp.jpeg)
+2. If you want to disable it and restore the default settings, run the `disable.bat` script.
 
-Na imagem acima, um canal famoso de TI ensinando a desativar a proteção do sistema para liberar um espaço insignificante do sistema.
+3. If the script does not work, manually configure the DNS by following the tutorial at: [AdGuard DNS](https://adguard-dns.io/en/public-dns.html)
 
-![Banner](https://i.imgur.com/hLS6nRG.png)
+### **Default Servers**
+AdGuard DNS blocks ads and trackers.
 
-Na imagem acima, outro ensinando a desativar a paginação de disco que é fundamental para o desempenho do sistema.
+```bash
+IPv4: 94.140.14.14 | 94.140.15.15
 
-**🔥 CONSEQUÊNCIAS:**
-- ❌ **Sistema sem pontos de restauração** - Sem backup automático
-- ❌ **Impossibilidade de recuperação** em caso de falhas críticas
-- ❌ **Vulnerável a problemas** de driver e atualizações
-- ❌ **Perda de desempenho** do sistema em jogos que usam muita memoria RAM
+IPv6: 2a10:50c0::ad1:ff | 2a10:50c0::ad2:ff
+```
 
-### 🎯 **Objetivo Principal**
-Fornecer otimizações reais e comprovadas, evitando as "gambiarras" que circulam em tutoriais não técnicos e que podem comprometer a estabilidade do sistema.
+---
 
-> **⚠️ AVISO IMPORTANTE:** Este nível de otimização representa o máximo possível sem comprometer a estabilidade do sistema. Não recomendamos métodos alternativos não verificados.
+# Mobile (Android)
 
-## 🚫 Práticas NÃO Recomendadas
+1. Install Xtra on your Android device: [Download](https://github.com/crackededed/Xtra/releases)
 
-### 🛑 **Software de Otimização Duvidosos**
-- Iobit Advanced SystemCare
-- DriverBooster 
-- CleanMaster e similares
+2. Open the settings and enable the custom proxy URL:
 
-### 🛑 **Modificações de Sistema Arriscadas**
-- ISOs "Lite" ou modificadas do Windows
-- Remoção manual de componentes do sistema
-- Edição indiscriminada do registro
+<img src="https://raw.githubusercontent.com/zRafaX/Twitch-AdBlock/refs/heads/main/Assets/01.png" alt="Configuration 2" width="300" style="margin:10px"/>
 
-### 🛑 **Otimizações que Comprometem Performance**
-- Limpeza do cache DXShader (causa recompilação)
-- Limpeza de shaders da NVIDIA (impacto em jogos)
-- Alteração inadequada de arquivos de paginação
-- Desativação da hibernação sem necessidade
+### Proxy
 
-### 🛑 **Overclock Inadequado**
-- Evite MSI Afterburner para usuários comuns
-- Prefira o overclock seguro via NVIDIA App
-- Não ultrapasse limites térmicos seguros
+```bash
+https://as.luminous.dev/live/$channel?allow_source=true&allow_audio_only=true&fast_bread=true
+```
 
-## ✨ Funcionalidades Técnicas
+All ads will be blocked. If it stops working, update to a newer proxy.
 
-### 🎯 **Otimizações de Performance**
-- ✅ Configurações avançadas de escalonamento de CPU
-- ✅ Otimizações de plano de energia de alto desempenho
+---
 
-### 🧹 **Limpeza Segura e Eficiente**
-- ✅ Remoção de arquivos temporários do sistema
-- ✅ Limpeza de cache de navegadores (Chrome, Edge)
-- ✅ Manutenção de logs e arquivos obsoletos
-- ✅ Gerenciamento controlado de Prefetch
-- ✅ Limpeza de componentes Windows desnecessários
+# Browser Extension Add-on
 
-### 🔒 **Segurança e Privacidade Reforçadas**
-- ✅ Remoção de serviços potencialmente vulneráveis
+### Extensions
+1. AdGuard Extension: [Download](https://chromewebstore.google.com/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg?hl=en)
+2. AdGuard Extra Extension: [Download](https://chromewebstore.google.com/detail/adguard-extra/gkeojjjcdcopjkbelgbcpckplegclfeg)
 
-### 🛡️ **Proteção e Backup Automático**
-- ✅ Criação automática de ponto de restauração
-- ✅ Verificação de integridade do sistema (SFC)
-- ✅ Registro detalhado de todas as alterações
-- ✅ Backup de configurações críticas
+---
 
-![Banner](https://i.imgur.com/lmfy50y.png)
+## Credits
 
-## ⚡ Requisitos do Sistema
-
-| Componente | Requisito Mínimo |
-|------------|------------------|
-| **Sistema Operacional** | Windows 10 64-bit ou Windows 11 |
-| **Privilégios** | Conta de Administrador |
-
-## 🚀 Guia de Instalação
-
-### Método 1 - Execução Direta (Recomendado)
-```cmd
-# 1. Clique com botão direito no arquivo .bat
-# 2. Selecione "Executar como administrador."
-# 3. Aguarde a conclusão automática.
+[Xtra](https://github.com/crackededed/Xtra) and [AdGuard](https://adguard.com)
