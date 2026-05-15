@@ -3,61 +3,61 @@ chcp 65001 >nul
 setlocal enabledelayedexpansion
 color 05
 
-title Otimizador de Sistema - Windows 11
+title System Optimizer - Windows 11
 
 echo By: zRaFax
 
-:: ==================== CONFIGURAÇÕES INICIAIS ====================
+:: ==================== INITIAL SETTINGS ====================
 set "LOG_FILE=%TEMP%\system_optimizer.log"
-echo [%date% %time%] Iniciando otimizacoes do sistema > "%LOG_FILE%"
+echo [%date% %time%] Starting system optimizations > "%LOG_FILE%"
 
-:: ==================== ADM ====================
+:: ==================== ADMIN ====================
 net session >nul 2>&1
 if not %errorlevel%==0 (
     echo.
-    echo # Iniciando...
+    echo # Starting...
     echo.
     PowerShell -Command "Start-Process '%0' -Verb RunAs" 2>nul || (
-        echo # Clique com o botão direito no script e selecione "Executar como administrador".
+        echo # Right-click the script and select "Run as administrator".
         pause >nul
         exit /b 1
     )
     exit /b 0
 )
 
-:: ==================== VERIFICAÇÃO DO SISTEMA ====================
+:: ==================== SYSTEM CHECK ====================
 echo.
-echo # Verificando versao do Windows...
+echo # Checking Windows version...
 for /f "tokens=4-5 delims=. " %%i in ('ver') do set /a MAJOR=%%i, MINOR=%%j
 if !MAJOR! lss 10 (
-    echo [ERRO] Este script e compativel apenas com Windows 10 ou superior
+    echo [ERROR] This script is compatible only with Windows 10 or higher
     timeout /t 5
     exit /b 1
 )
 
-:: ==================== CRIAR PONTO DE RESTAURAÇÃO ====================
+:: ==================== CREATE RESTORE POINT ====================
 echo.
-echo # Criando ponto de restauracao do sistema...
-powershell -Command "Checkpoint-Computer -Description 'Otimizacao_Pre_Script' -RestorePointType MODIFY_SETTINGS" >nul 2>&1
+echo # Creating system restore point...
+powershell -Command "Checkpoint-Computer -Description 'Optimization_Pre_Script' -RestorePointType MODIFY_SETTINGS" >nul 2>&1
 if %errorlevel% equ 0 (
-    echo [✓] Ponto de restauracao criado com sucesso
+    echo [✓] Restore point created successfully
 ) else (
-    echo [!] Nao foi possivel criar ponto de restauracao
+    echo [!] Could not create restore point
 )
 
-:: ==================== CONFIGURAÇÕES DO SISTEMA ====================
+:: ==================== SYSTEM CONFIGURATIONS ====================
 echo.
-echo # Aplicando otimizacoes do sistema...
+echo # Applying system optimizations...
 echo.
 
-:: Desativar Apps em Segundo Plano
+:: Disable Background Apps
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f >nul && (
-    echo [✓] Apps em segundo plano desativados
+    echo [✓] Background apps disabled
 ) || (
-    echo [✗] Erro ao desativar apps em segundo plano
+    echo [✗] Error disabling background apps
 )
 
-:: ==================== SEGURANÇA (LIMPEZA DE DADOS) ====================
+:: ==================== SECURITY (DATA CLEANUP) ====================
 del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data" >nul 2>&1
 del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data-journal" >nul 2>&1
 del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account" >nul 2>&1
@@ -66,49 +66,49 @@ del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Da
 del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data" >nul 2>&1
 del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data-journal" >nul 2>&1
 
-:: ==================== LIMPEZA AVANÇADA DE ARQUIVOS TEMPORÁRIOS ====================
+:: ==================== ADVANCED TEMPORARY FILE CLEANUP ====================
 echo.
-echo # Realizando limpeza de arquivos temporarios...
+echo # Performing temporary files cleanup...
 echo.
 
-:: Função para limpar pasta com verificação
-call :CleanFolder "%TEMP%" "Pasta Temp do usuario"
-call :CleanFolder "C:\Windows\Temp" "Pasta Temp do sistema"
-call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Windows\Temporary Internet Files" "Cache Internet Explorer"
-call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Windows\Recent" "Arquivos recentes"
-call :CleanFolder "%USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\Cache" "Cache Chrome" 2>nul
-call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Edge\User Data\Default\Cache" "Cache Edge" 2>nul
+:: Function to clean folder with verification
+call :CleanFolder "%TEMP%" "User Temp folder"
+call :CleanFolder "C:\Windows\Temp" "System Temp folder"
+call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Windows\Temporary Internet Files" "Internet Explorer cache"
+call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Windows\Recent" "Recent files"
+call :CleanFolder "%USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\Cache" "Chrome cache" 2>nul
+call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Edge\User Data\Default\Cache" "Edge cache" 2>nul
 
-:: Limpar Prefetch
+:: Clean Prefetch
 if exist "C:\Windows\Prefetch\*" (
     del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
-    echo [✓] Cache Prefetch limpo
+    echo [✓] Prefetch cache cleaned
 )
 
-:: Executar Cleanmgr
-echo [i] Executando Limpeza de Disco Avancada...
+:: Run Cleanmgr
+echo [i] Running advanced Disk Cleanup...
 cleanmgr /sagerun:65535 >nul 2>&1
-echo [✓] Limpeza de disco concluida
+echo [✓] Disk cleanup completed
 
-:: ==================== OTIMIZAÇÕES DE PERFORMANCE AVANÇADAS ====================
+:: ==================== ADVANCED PERFORMANCE OPTIMIZATIONS ====================
 echo.
-echo # Aplicando otimizacoes de performance avancadas...
+echo # Applying advanced performance optimizations...
 echo.
 
-:: Configurar plano de energia de alto desempenho
-powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul && echo [✓] Plano de energia de alto desempenho ativado
+:: Set high performance power plan
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul && echo [✓] High performance power plan activated
 
-:: Aplicar configurações de GPU
+:: Apply GPU settings
 if exist ".\REG\OTIMIZEWINDOWS11.reg" (
-    regedit /s ".\REG\OTIMIZEWINDOWS11.reg" && echo [✓] Configuracoes de GPU aplicadas
+    regedit /s ".\REG\OTIMIZEWINDOWS11.reg" && echo [✓] GPU settings applied
 )
 if exist ".\REG\OTIMIZEWINDOWS11 2.reg" (
-    regedit /s ".\REG\OTIMIZEWINDOWS11 2.reg" && echo [✓] Configuracoes de GPU 2 aplicadas
+    regedit /s ".\REG\OTIMIZEWINDOWS11 2.reg" && echo [✓] GPU settings 2 applied
 )
 
-:: ==================== CONFIGURAÇÃO DE SERVIÇOS ====================
+:: ==================== SERVICE CONFIGURATION ====================
 echo.
-echo # Configurando servicos do Windows de forma inteligente...
+echo # Configuring Windows services intelligently...
 echo.
 
 set services=(
@@ -142,67 +142,67 @@ for %%s in %services% do (
             sc stop "%%a" >nul 2>&1
             sc config "%%a" start= %%b >nul 2>&1
             if !errorlevel! equ 0 (
-                echo [✓] %%c configurado como %%b
+                echo [✓] %%c configured as %%b
             ) else (
-                echo [✗] Erro ao configurar %%c
+                echo [✗] Error configuring %%c
             )
         ) else (
-            echo [i] %%c nao encontrado
+            echo [i] %%c not found
         )
     )
 )
 
-:: ==================== FINALIZAÇÃO ====================
+:: ==================== FINALIZATION ====================
 echo.
-echo # Executando otimizacoes finais...
+echo # Running final optimizations...
 echo.
 
-:: Limpar cache DNS
-ipconfig /flushdns >nul && echo [✓] Cache DNS limpo
+:: Flush DNS cache
+ipconfig /flushdns >nul && echo [✓] DNS cache flushed
 
-:: Verificar integridade do sistema
-echo [i] Verificando integridade do sistema...
+:: Check system integrity
+echo [i] Checking system integrity...
 sfc /scannow /offbootdir=C:\ /offwindir=C:\Windows >nul 2>&1
-echo [✓] Verificacao de integridade concluida
+echo [✓] Integrity check completed
 
-:: Calcular espaço liberado
+:: Calculate freed space
 for /f "tokens=3" %%a in ('dir /a /s ^| find "File(s)"') do set "FILES=%%a"
-echo [✓] Limpeza concluida - %FILES% arquivos processados
+echo [✓] Cleanup completed - %FILES% files processed
 
-:: ==================== RELATÓRIO FINAL ====================
+:: ==================== FINAL REPORT ====================
 echo.
 echo ============================================
-echo # O SISTEMA FOI OTIMIZADO COM SUCESSO!
+echo # SYSTEM OPTIMIZED SUCCESSFULLY!
 echo ============================================
 echo.
-echo [RESUMO DAS ALTERACOES]
-echo • Servicos desnecessarios desativados
-echo • Arquivos temporarios removidos
-echo • Configuracoes de performance aplicadas
+echo [SUMMARY OF CHANGES]
+echo • Unnecessary services disabled
+echo • Temporary files removed
+echo • Performance settings applied
 echo.
-echo [RECOMENDACOES]
-echo 1. Reinicie o computador para aplicar todas as alteracoes
-echo 2. Execute este script mensalmente para manutencao
-echo 3. Verifique se seus programas funcionam normalmente
+echo [RECOMMENDATIONS]
+echo 1. Restart the computer to apply all changes
+echo 2. Run this script monthly for maintenance
+echo 3. Check if your programs work normally
 echo.
-echo O log completo foi salvo em: %LOG_FILE%
+echo Full log saved to: %LOG_FILE%
 echo.
 
 timeout /t 10 >nul
 
-:: ==================== OPCIONAL ===================
+:: ==================== OPTIONAL ====================
 
-:: ====== LIMPEZA DE DISCO ======
+:: ====== DISK CLEANUP ======
 cleanmgr /sagerun:99
 
-:: ====== LIMPEZA AVANÇADA (NÃO RECOMENDADO)
+:: ====== ADVANCED CLEANUP (NOT RECOMMENDED) ======
 ::Dism.exe /Online /Cleanup-Image /StartComponentCleanup /ResetBase
 
-:: ==================== FUNÇÕES ====================
+:: ==================== FUNCTIONS ====================
 :CleanFolder
 if exist "%~1\*" (
     del /q /f /s "%~1\*" >nul 2>&1
-    echo [✓] %~2 limpo
+    echo [✓] %~2 cleaned
 )
 
 exit /b
