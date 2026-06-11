@@ -3,10 +3,6 @@ chcp 65001 >nul
 setlocal enabledelayedexpansion
 color 05
 
-title System Optimizer - Windows 11
-
-echo By: zRaFax
-
 :: ==================== INITIAL SETTINGS ====================
 set "LOG_FILE=%TEMP%\system_optimizer.log"
 echo [%date% %time%] Starting system optimizations > "%LOG_FILE%"
