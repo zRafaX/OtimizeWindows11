@@ -4,32 +4,32 @@ color 05
 :: ==================== ADMIN ====================
 net session >nul 2>&1
 if not %errorlevel%==0 (
-    echo.
-    echo # Starting...
-    echo.
-    PowerShell -Command "Start-Process '%0' -Verb RunAs" 2>nul || (
-        echo # Right-click the script and select "Run as administrator".
-        pause >nul
-        exit /b 1
-    )
-    exit /b 0
+echo.
+echo # Starting...
+echo.
+PowerShell -Command "Start-Process '%0' -Verb RunAs" 2>nul || (
+echo # Right-click the script and select "Run as administrator".
+pause >nul
+exit /b 1
+)
+exit /b 0
 )
 
 :: Disable Background Apps
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f >nul && (
-    echo [✓] Background apps disabled
+echo [✓] Background apps disabled
 ) || (
-    echo [✗] Error disabling background apps
+echo [✗] Error disabling background apps
 )
 
 :: ==================== SECURITY (DATA CLEANUP) ====================
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data" >nul 2>&1
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data-journal" >nul 2>&1
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account" >nul 2>&1
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account-journal" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data-journal" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Login Data For Account-journal" >nul 2>&1
 
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data" >nul 2>&1
-del "C:\Users\%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data-journal" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data" >nul 2>&1
+del "C:\Users%username%\AppData\Local\Microsoft\Edge\User Data\Default\Web Data-journal" >nul 2>&1
 
 :: Function to clean folder with verification
 call :CleanFolder "%TEMP%" "User Temp folder"
@@ -40,9 +40,9 @@ call :CleanFolder "%USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\C
 call :CleanFolder "%USERPROFILE%\AppData\Local\Microsoft\Edge\User Data\Default\Cache" "Edge cache" 2>nul
 
 :: Clean Prefetch
-if exist "C:\Windows\Prefetch\*" (
-    del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
-    echo [✓] Prefetch cache cleaned
+if exist "C:\Windows\Prefetch*" (
+del /q /f /s "C:\Windows\Prefetch*" >nul 2>&1
+echo [✓] Prefetch cache cleaned
 )
 
 :: Run Cleanmgr
@@ -57,407 +57,405 @@ powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul && echo [✓] High
 
 :: Apply GPU settings
 if exist ".\REG\OTIMIZEWINDOWS11.reg" (
-    regedit /s ".\REG\OTIMIZEWINDOWS11.reg" && echo [✓] GPU settings applied
+regedit /s ".\REG\OTIMIZEWINDOWS11.reg" && echo [✓] GPU settings applied
 )
 if exist ".\REG\OTIMIZEWINDOWS11 2.reg" (
-    regedit /s ".\REG\OTIMIZEWINDOWS11 2.reg" && echo [✓] GPU settings 2 applied
+regedit /s ".\REG\OTIMIZEWINDOWS11 2.reg" && echo [✓] GPU settings 2 applied
 )
 
 :: ==================== SERVICE CONFIGURATION ====================
 
 timeout /t 2 >nul
 
-:: Desativar: disabled | Manual: demand | Ativar: auto
+:: Disable: disabled | Manual: demand | Enable: auto
 
 :: SysMain (Superfetch)
 sc query "SysMain" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "SysMain" start= auto >nul
-    echo [✓] SysMain Superfetch ativado com sucesso!
+sc config "SysMain" start= auto >nul
+echo [✓] SysMain (Superfetch) successfully enabled!
 ) else (
-    echo [✗] SysMain Superfetch não encontrado no sistema.
+echo [✗] SysMain (Superfetch) not found on the system.
 )
 
 :: WSearch (Windows Search)
-echo Desativando o WSearch...
+echo Disabling WSearch...
 sc query "WSearch" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "WSearch" start= disabled >nul
-    echo [✓] WSearch Windows Search desativado com sucesso!
+sc config "WSearch" start= disabled >nul
+echo [✓] WSearch (Windows Search) successfully disabled!
 ) else (
-    echo [✗] WSearch Windows Search não encontrado no sistema.
+echo [✗] WSearch (Windows Search) not found on the system.
 )
 
 :: TapiSrv (Telephony)
-echo Desativando o Telephony...
+echo Disabling Telephony...
 sc query "TapiSrv" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "TapiSrv" start= disabled >nul
-    echo [✓] TapiSrv Telephony desativado com sucesso!
+sc config "TapiSrv" start= disabled >nul
+echo [✓] TapiSrv (Telephony) successfully disabled!
 ) else (
-    echo [✗] TapiSrv Telephony não encontrado no sistema.
+echo [✗] TapiSrv (Telephony) not found on the system.
 )
 
 :: TermService (Remote Desktop Services)
-echo Desativando o TermService...
+echo Disabling TermService...
 sc query "TermService" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "TermService" start= disabled >nul
-    echo [✓] TermService Remote Desktop Services desativado com sucesso!
+sc config "TermService" start= disabled >nul
+echo [✓] TermService (Remote Desktop Services) successfully disabled!
 ) else (
-    echo [✗] TermService Remote Desktop Services não encontrado no sistema.
+echo [✗] TermService (Remote Desktop Services) not found on the system.
 )
 
 :: PhoneSvc (Phone Service)
-echo Desativando o PhoneSvc...
+echo Disabling PhoneSvc...
 sc query "PhoneSvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "PhoneSvc" start= disabled >nul
-    echo [✓] PhoneSvc Phone Service desativado com sucesso!
+sc config "PhoneSvc" start= disabled >nul
+echo [✓] PhoneSvc (Phone Service) successfully disabled!
 ) else (
-    echo [✗] PhoneSvc Phone Service não encontrado no sistema.
+echo [✗] PhoneSvc (Phone Service) not found on the system.
 )
 
 :: WbioSrvc (Windows Biometric Service)
-echo Desativando o WbioSrvc...
+echo Disabling WbioSrvc...
 sc query "WbioSrvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "WbioSrvc" start= disabled >nul
-    echo [✓] WbioSrvc Windows Biometric Service desativado com sucesso!
+sc config "WbioSrvc" start= disabled >nul
+echo [✓] WbioSrvc (Windows Biometric Service) successfully disabled!
 ) else (
-    echo [✗] WbioSrvc Windows Biometric Service não encontrado no sistema.
+echo [✗] WbioSrvc (Windows Biometric Service) not found on the system.
 )
 
 :: RemoteRegistry (Remote Registry)
-echo Desativando o RemoteRegistry...
+echo Disabling RemoteRegistry...
 sc query "RemoteRegistry" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "RemoteRegistry" start= disabled >nul
-    echo [✓] RemoteRegistry Remote Registry desativado com sucesso!
+sc config "RemoteRegistry" start= disabled >nul
+echo [✓] RemoteRegistry (Remote Registry) successfully disabled!
 ) else (
-    echo [✗] RemoteRegistry Remote Registry não encontrado no sistema.
+echo [✗] RemoteRegistry (Remote Registry) not found on the system.
 )
 
 :: edgeupdate (Microsoft Edge Update Service)
-echo Desativando o edgeupdate...
+echo Disabling edgeupdate...
 sc query "edgeupdate" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "edgeupdate" start= demand >nul
-    echo [✓] edgeupdate Microsoft Edge Update Service configurado como manual!
+sc config "edgeupdate" start= demand >nul
+echo [✓] edgeupdate (Microsoft Edge Update Service) set to manual!
 ) else (
-    echo [✗] edgeupdate Microsoft Edge Update Service não encontrado no sistema.
+echo [✗] edgeupdate (Microsoft Edge Update Service) not found on the system.
 )
 
 :: FlexNet Licensing Service 64
-echo Desativando o FlexNet...
+echo Disabling FlexNet...
 sc query "FlexNet Licensing Service 64" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "FlexNet Licensing Service 64" start= demand >nul
-    echo [✓] FlexNet Licensing Service 64 configurado como manual!
+sc config "FlexNet Licensing Service 64" start= demand >nul
+echo [✓] FlexNet Licensing Service 64 set to manual!
 ) else (
-    echo [✗] FlexNet Licensing Service 64 não encontrado no sistema.
+echo [✗] FlexNet Licensing Service 64 not found on the system.
 )
 
 :: SCardSvr (Smart Card)
-echo Desativando o SCardSvr...
+echo Disabling SCardSvr...
 sc query "SCardSvr" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "SCardSvr" start= disabled >nul
-    echo [✓] SCardSvr Smart Card desativado com sucesso!
+sc config "SCardSvr" start= disabled >nul
+echo [✓] SCardSvr (Smart Card) successfully disabled!
 ) else (
-    echo [✗] SCardSvr Smart Card não encontrado no sistema.
+echo [✗] SCardSvr (Smart Card) not found on the system.
 )
 
-:: Vmcompute (Serviço de Computação de Host do Hyper-V)
-echo Desativando o vmcompute...
+:: Vmcompute (Hyper-V Host Compute Service)
+echo Disabling vmcompute...
 sc query "vmcompute" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmcompute" start= demand >nul
-    echo [✓] vmcompute desativado com sucesso!
+sc config "vmcompute" start= demand >nul
+echo [✓] vmcompute (Hyper-V Host Compute Service) set to manual!
 ) else (
-    echo [✗] vmcompute não encontrado no sistema.
+echo [✗] vmcompute not found on the system.
 )
 
 :: ClickToRunSvc (Microsoft Office Click-to-Run Service)
-echo Desativando o ClickToRunSvc...
+echo Disabling ClickToRunSvc...
 sc query "ClickToRunSvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "ClickToRunSvc" start= demand >nul
-    echo [✓] ClickToRunSvc desativado com sucesso!
+sc config "ClickToRunSvc" start= demand >nul
+echo [✓] ClickToRunSvc set to manual!
 ) else (
-    echo [✗] ClickToRunSvc não encontrado no sistema.
+echo [✗] ClickToRunSvc not found on the system.
 )
 
 :: EABackgroundService (EA APP)
-echo Desativando o EABackgroundService...
+echo Disabling EABackgroundService...
 sc query "EABackgroundService" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "EABackgroundService" start= demand >nul
-    echo [✓] EABackgroundService desativado com sucesso!
+sc config "EABackgroundService" start= demand >nul
+echo [✓] EABackgroundService set to manual!
 ) else (
-    echo [✗] EABackgroundService não encontrado no sistema.
+echo [✗] EABackgroundService not found on the system.
 )
 
-:: Wercplsupport (Suporte do Painel de Controle Relatórios de problemas)
-echo Desativando o Wercplsupport...
+:: Wercplsupport (Problem Reports and Solutions Control Panel Support)
+echo Disabling Wercplsupport...
 sc query "Wercplsupport" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "Wercplsupport" start= disabled >nul
-    echo [✓] Wercplsupport desativado com sucesso!
+sc config "Wercplsupport" start= disabled >nul
+echo [✓] Wercplsupport successfully disabled!
 ) else (
-    echo [✗] Wercplsupport não encontrado no sistema.
+echo [✗] Wercplsupport not found on the system.
 )
 
 :: GigabyteUpdateService (GIGABYTE Update Service)
-echo Desativando o GigabyteUpdateService...
+echo Disabling GigabyteUpdateService...
 sc query "GigabyteUpdateService" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "GigabyteUpdateService" start= demand >nul
-    echo [✓] GigabyteUpdateService desativado com sucesso!
+sc config "GigabyteUpdateService" start= demand >nul
+echo [✓] GigabyteUpdateService set to manual!
 ) else (
-    echo [✗] GigabyteUpdateService não encontrado no sistema.
+echo [✗] GigabyteUpdateService not found on the system.
 )
 
 :: RvControlSvc (Radmin VPN Control Service)
-echo Desativando o RvControlSvc...
+echo Disabling RvControlSvc...
 sc query "RvControlSvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "RvControlSvc" start= demand >nul
-    echo [✓] RvControlSvc desativado com sucesso!
+sc config "RvControlSvc" start= demand >nul
+echo [✓] RvControlSvc set to manual!
 ) else (
-    echo [✗] RvControlSvc não encontrado no sistema.
+echo [✗] RvControlSvc not found on the system.
 )
 
-:: DiagTrack (Experiências do Usuário Conectado e Telemetria)
-echo Desativando o DiagTrack...
+:: DiagTrack (Connected User Experiences and Telemetry)
+echo Disabling DiagTrack...
 sc query "DiagTrack" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "DiagTrack" start= disabled >nul
-    echo [✓] DiagTrack desativado com sucesso!
+sc config "DiagTrack" start= disabled >nul
+echo [✓] DiagTrack successfully disabled!
 ) else (
-    echo [✗] DiagTrack não encontrado no sistema.
+echo [✗] DiagTrack not found on the system.
 )
 
-:: DPS (Serviço de Política de Diagnóstico)
-echo Desativando o DPS...
+:: DPS (Diagnostic Policy Service)
+echo Disabling DPS...
 sc query "DPS" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "DPS" start= demand >nul
-    echo [✓] DPS desativado com sucesso!
+sc config "DPS" start= demand >nul
+echo [✓] DPS set to manual!
 ) else (
-    echo [✗] DPS não encontrado no sistema.
+echo [✗] DPS not found on the system.
 )
 
-:: MapsBroker (Gerencia mapas offline)
-echo Desativando o MapsBroker...
+:: MapsBroker (Downloaded Maps Manager)
+echo Disabling MapsBroker...
 sc query "MapsBroker" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "MapsBroker" start= disabled >nul
-    echo [✓] MapsBroker desativado com sucesso!
+sc config "MapsBroker" start= disabled >nul
+echo [✓] MapsBroker successfully disabled!
 ) else (
-    echo [✗] MapsBroker não encontrado no sistema.
+echo [✗] MapsBroker not found on the system.
 )
 
 :: EasyTuneEngineService (Gigabyte EasyTune Engine Service)
-echo Desativando o EasyTuneEngineService...
+echo Disabling EasyTuneEngineService...
 sc query "EasyTuneEngineService" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "EasyTuneEngineService" start= demand >nul
-    echo [✓] EasyTuneEngineService desativado com sucesso!
+sc config "EasyTuneEngineService" start= demand >nul
+echo [✓] EasyTuneEngineService set to manual!
 ) else (
-    echo [✗] EasyTuneEngineService não encontrado no sistema.
+echo [✗] EasyTuneEngineService not found on the system.
 )
 
-:: Spooler (Spooler de Impressão)
-echo Desativando o Spooler...
+:: Spooler (Print Spooler)
+echo Disabling Spooler...
 sc query "Spooler" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "Spooler" start= demand >nul
-    echo [✓] Spooler desativado com sucesso!
+sc config "Spooler" start= demand >nul
+echo [✓] Spooler set to manual!
 ) else (
-    echo [✗] Spooler não encontrado no sistema.
+echo [✗] Spooler not found on the system.
 )
 
-:: wuqisvc (Insights de Uso e Qualidade da Microsoft)
-echo Desativando o wuqisvc...
+:: wuqisvc (Microsoft Usage and Quality Insights)
+echo Disabling wuqisvc...
 sc query "wuqisvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "wuqisvc" start= disabled >nul
-    echo [✓] wuqisvc desativado com sucesso!
+sc config "wuqisvc" start= disabled >nul
+echo [✓] wuqisvc successfully disabled!
 ) else (
-    echo [✗] wuqisvc não encontrado no sistema.
+echo [✗] wuqisvc not found on the system.
 )
 
-:: SSDPSRV (Descoberta SSDP)
-echo Desativando o SSDPSRV...
+:: SSDPSRV (SSDP Discovery)
+echo Disabling SSDPSRV...
 sc query "SSDPSRV" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "SSDPSRV" start= demand >nul
-    echo [✓] SSDPSRV desativado com sucesso!
+sc config "SSDPSRV" start= demand >nul
+echo [✓] SSDPSRV set to manual!
 ) else (
-    echo [✗] SSDPSRV não encontrado no sistema.
+echo [✗] SSDPSRV not found on the system.
 )
 
-:: lfsvc (Serviço de Geolocalização)
-echo Desativando o lfsvc...
+:: lfsvc (Geolocation Service)
+echo Disabling lfsvc...
 sc query "lfsvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "lfsvc" start= disabled >nul
-    echo [✓] lfsvc desativado com sucesso!
+sc config "lfsvc" start= disabled >nul
+echo [✓] lfsvc successfully disabled!
 ) else (
-    echo [✗] lfsvc não encontrado no sistema.
+echo [✗] lfsvc not found on the system.
 )
 
-:: HvHost (Serviço de Host HV)
-echo Desativando o HvHost...
+:: HvHost (HV Host Service)
+echo Disabling HvHost...
 sc query "HvHost" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "HvHost" start= demand >nul
-    echo [✓] HvHost desativado com sucesso!
+sc config "HvHost" start= demand >nul
+echo [✓] HvHost set to manual!
 ) else (
-    echo [✗] HvHost não encontrado no sistema.
+echo [✗] HvHost not found on the system.
 )
 
-:: CDPSvc (Serviço de Plataforma de Dispositivos Conectados)
-echo Desativando o CDPSvc...
+:: CDPSvc (Connected Devices Platform Service)
+echo Disabling CDPSvc...
 sc query "CDPSvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "CDPSvc" start= demand >nul
-    echo [✓] CDPSvc desativado com sucesso!
+sc config "CDPSvc" start= demand >nul
+echo [✓] CDPSvc set to manual!
 ) else (
-    echo [✗] CDPSvc não encontrado no sistema.
+echo [✗] CDPSvc not found on the system.
 )
 
-:: Desativar: disabled | Manual: demand | Ativar: auto
-
-:: ==================== Desativar (Sandbox) ====================
+:: ==================== Disable (Sandbox) ====================
 
 bcdedit /set hypervisorlaunchtype off
 
-:: hns (Sandbox)
+:: hns (Host Network Service)
 sc query "hns" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "hns" start= demand >nul
-    echo [✓] hns ativado com sucesso!
+sc config "hns" start= demand >nul
+echo [✓] hns set to manual!
 ) else (
-    echo [✗] hns não encontrado no sistema.
+echo [✗] hns not found on the system.
 )
 
-:: wsbsvc (Sandbox)
+:: wsbsvc (Windows Sandbox Service)
 sc query "wsbsvc" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "wsbsvc" start= demand >nul
-    echo [✓] wsbsvc ativado com sucesso!
+sc config "wsbsvc" start= demand >nul
+echo [✓] wsbsvc set to manual!
 ) else (
-    echo [✗] wsbsvc não encontrado no sistema.
+echo [✗] wsbsvc not found on the system.
 )
 
-:: vmcompute (Sandbox)
+:: vmcompute (Hyper-V Host Compute Service)
 sc query "vmcompute" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmcompute" start= demand >nul
-    echo [✓] vmcompute ativado com sucesso!
+sc config "vmcompute" start= demand >nul
+echo [✓] vmcompute set to manual!
 ) else (
-    echo [✗] vmcompute não encontrado no sistema.
+echo [✗] vmcompute not found on the system.
 )
 
-:: vmms (Sandbox)
+:: vmms (Hyper-V Virtual Machine Management)
 sc query "vmms" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmms" start= demand >nul
-    echo [✓] vmms  ativado com sucesso!
+sc config "vmms" start= demand >nul
+echo [✓] vmms set to manual!
 ) else (
-    echo [✗] vmms não encontrado no sistema.
+echo [✗] vmms not found on the system.
 )
 
-:: CmService (Sandbox)
+:: CmService (Connection Manager Service)
 sc query "CmService" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "CmService" start= demand >nul
-    echo [✓] CmService ativado com sucesso!
+sc config "CmService" start= demand >nul
+echo [✓] CmService set to manual!
 ) else (
-    echo [✗] CmService não encontrado no sistema.
+echo [✗] CmService not found on the system.
 )
 
-:: HvHost (Sandbox)
+:: HvHost (HV Host Service)
 sc query "HvHost" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "HvHost" start= demand >nul
-    echo [✓] HvHost ativado com sucesso!
+sc config "HvHost" start= demand >nul
+echo [✓] HvHost set to manual!
 ) else (
-    echo [✗] HvHost não encontrado no sistema.
+echo [✗] HvHost not found on the system.
 )
 
-:: vmickvpexchange (Sandbox)
+:: vmickvpexchange (Hyper-V Data Exchange Service)
 sc query "vmickvpexchange" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmickvpexchange" start= demand >nul
-    echo [✓] vmickvpexchange ativado com sucesso!
+sc config "vmickvpexchange" start= demand >nul
+echo [✓] vmickvpexchange set to manual!
 ) else (
-    echo [✗] vmickvpexchange não encontrado no sistema.
+echo [✗] vmickvpexchange not found on the system.
 )
 
-:: vmicguestinterface (Sandbox)
+:: vmicguestinterface (Hyper-V Guest Service Interface)
 sc query "vmicguestinterface" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicguestinterface" start= demand >nul
-    echo [✓] vmicguestinterface ativado com sucesso!
+sc config "vmicguestinterface" start= demand >nul
+echo [✓] vmicguestinterface set to manual!
 ) else (
-    echo [✗] vmicguestinterface não encontrado no sistema.
+echo [✗] vmicguestinterface not found on the system.
 )
 
-:: vmicheartbeat (Sandbox)
+:: vmicheartbeat (Hyper-V Heartbeat Service)
 sc query "vmicheartbeat" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicheartbeat" start= demand >nul
-    echo [✓] vmicheartbeat ativado com sucesso!
+sc config "vmicheartbeat" start= demand >nul
+echo [✓] vmicheartbeat set to manual!
 ) else (
-    echo [✗] vmicheartbeat não encontrado no sistema.
+echo [✗] vmicheartbeat not found on the system.
 )
 
-:: vmicvmsession (Sandbox)
+:: vmicvmsession (Hyper-V PowerShell Direct Service)
 sc query "vmicvmsession" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicvmsession" start= demand >nul
-    echo [✓] vmicvmsession ativado com sucesso!
+sc config "vmicvmsession" start= demand >nul
+echo [✓] vmicvmsession set to manual!
 ) else (
-    echo [✗] vmicvmsession não encontrado no sistema.
+echo [✗] vmicvmsession not found on the system.
 )
 
-:: vmicrdv (Sandbox)
+:: vmicrdv (Hyper-V Remote Desktop Virtualization Service)
 sc query "vmicrdv" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicrdv" start= demand >nul
-    echo [✓] vmicrdv ativado com sucesso!
+sc config "vmicrdv" start= demand >nul
+echo [✓] vmicrdv set to manual!
 ) else (
-    echo [✗] vmicrdv não encontrado no sistema.
+echo [✗] vmicrdv not found on the system.
 )
 
-:: vmictimesync (Sandbox)
+:: vmictimesync (Hyper-V Time Synchronization Service)
 sc query "vmictimesync" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmictimesync" start= demand >nul
-    echo [✓] vmictimesync ativado com sucesso!
+sc config "vmictimesync" start= demand >nul
+echo [✓] vmictimesync set to manual!
 ) else (
-    echo [✗] vmictimesync não encontrado no sistema.
+echo [✗] vmictimesync not found on the system.
 )
 
-:: vmicshutdown (Sandbox)
+:: vmicshutdown (Hyper-V Guest Shutdown Service)
 sc query "vmicshutdown" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicshutdown" start= demand >nul
-    echo [✓] vmicshutdown ativado com sucesso!
+sc config "vmicshutdown" start= demand >nul
+echo [✓] vmicshutdown set to manual!
 ) else (
-    echo [✗] vmicshutdown não encontrado no sistema.
+echo [✗] vmicshutdown not found on the system.
 )
 
-:: vmicvss (Sandbox)
+:: vmicvss (Hyper-V Volume Shadow Copy Requestor)
 sc query "vmicvss" >nul 2>&1
 if %errorlevel% equ 0 (
-    sc config "vmicvss" start= demand >nul
-    echo [✓] vmicvss ativado com sucesso!
+sc config "vmicvss" start= demand >nul
+echo [✓] vmicvss set to manual!
 ) else (
-    echo [✗] vmicvss não encontrado no sistema.
+echo [✗] vmicvss not found on the system.
 )
 
 :: ==================== FINALIZATION ====================
@@ -481,9 +479,9 @@ cleanmgr /sagerun:99
 
 :: ==================== FUNCTIONS ====================
 :CleanFolder
-if exist "%~1\*" (
-    del /q /f /s "%~1\*" >nul 2>&1
-    echo [✓] %~2 cleaned
+if exist "%~1*" (
+del /q /f /s "%~1*" >nul 2>&1
+echo [✓] %~2 cleaned
 )
 
 exit /b
